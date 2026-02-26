@@ -2478,7 +2478,37 @@
                 document.getElementById('searchInput').focus();
             }
         });
-    </script>
+    
+// Load Yandex Disk audio dynamically
+        const yadiskKeys = [
+            'https://disk.yandex.ru/d/Zng-z3t14TYMHA',
+            'https://disk.yandex.ru/d/oJdkpn-_29A8Aw',
+            'https://disk.yandex.ru/d/oJdkpn-_29A8Aw'
+        ];
+
+        async function loadYandexAudio(publicKey, sourceEl) {
+            try {
+                const apiUrl = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey);
+                const resp = await fetch(apiUrl);
+                const data = await resp.json();
+                if (data.href) {
+                    sourceEl.src = data.href;
+                    sourceEl.parentElement.load();
+                }
+            } catch (e) {
+                console.warn('Yandex audio error:', e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioSection = document.getElementById('audio');
+            if (audioSection) {
+                const sources = audioSection.querySelectorAll('audio source');
+                sources.forEach(function(source, i) {
+                    if (yadiskKeys[i]) loadYandexAudio(yadiskKeys[i], source);
+                });
+            }
+        });
 
 </body>
 </html>
