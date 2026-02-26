@@ -2486,19 +2486,28 @@
             'https://disk.yandex.ru/d/oJdkpn-_29A8Aw'
         ];
 
-        function getDirectAudioUrl(yadiskUrl) {
-            return 'https://getfile.dokpub.com/yandex/get/' + yadiskUrl;
+        async function loadYandexAudio(publicKey, audioEl) {
+            try {
+                const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(
+                    'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey)
+                );
+                const resp = await fetch(proxyUrl);
+                const data = await resp.json();
+                if (data.href) {
+                    audioEl.src = data.href;
+                    audioEl.load();
+                }
+            } catch(e) {
+                console.warn('Yandex audio load error:', e);
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             const audioSection = document.getElementById('audio');
             if (audioSection) {
-                const sources = audioSection.querySelectorAll('audio source');
-                sources.forEach(function(source, i) {
-                    if (yadiskKeys[i]) {
-                        source.src = getDirectAudioUrl(yadiskKeys[i]);
-                        source.parentElement.load();
-                    }
+                const audios = audioSection.querySelectorAll('audio');
+                audios.forEach(function(audio, i) {
+                    if (yadiskKeys[i]) loadYandexAudio(yadiskKeys[i], audio);
                 });
             }
         });
