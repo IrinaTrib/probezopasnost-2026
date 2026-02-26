@@ -2488,7 +2488,7 @@
                 const audios = audioSection.querySelectorAll('audio');
                 audios.forEach(function(audio, i) {
                     if (yadiskKeys[i]) {
-                        audio.src = 'https://getfile.dokpub.com/yandex/get/' + yadiskKeys[i];
+                        audio.src = yadiskKeys[i];
                         audio.load();
                     }
                 });
