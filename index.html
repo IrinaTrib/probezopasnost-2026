@@ -2476,37 +2476,21 @@
             }
         });
     
-        // Load Yandex Disk audio via direct proxy links (no CORS)
-        const yadiskKeys = [
-            'https://disk.yandex.ru/d/Zng-z3t14TYMHA',
-            'https://disk.yandex.ru/d/oJdkpn-_29A8Aw',
-            'https://disk.yandex.ru/d/oJdkpn-_29A8Aw'
-        ];
-
-        async function loadYandexAudio(publicKey, audioEl) {
-            try {
-                const apiUrl = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey);
-                                const resp = await fetch(apiUrl);
-                const data = await resp.json();
-                if (data.href) {
-                    audioEl.src = 'https://corsproxy.io/?' + encodeURIComponent(data.href);
-                    audioEl.load();
-                }
-            } catch(e) {
-                console.warn('Yandex audio load error:', e);
-            }
-        }
-
+// Load audio from Yandex Disk via getfile.dokpub.com proxy
         document.addEventListener('DOMContentLoaded', function() {
+            const yadiskKeys = [
+                'https://disk.yandex.ru/d/Zng-z3t14TYMHA',
+                'https://disk.yandex.ru/d/oJdkpn-_29A8Aw',
+                'https://disk.yandex.ru/d/oJdkpn-_29A8Aw'
+            ];
             const audioSection = document.getElementById('audio');
             if (audioSection) {
                 const audios = audioSection.querySelectorAll('audio');
                 audios.forEach(function(audio, i) {
-                    if (yadiskKeys[i]) loadYandexAudio(yadiskKeys[i], audio);
+                    if (yadiskKeys[i]) {
+                        audio.src = 'https://getfile.dokpub.com/yandex/get/' + yadiskKeys[i];
+                        audio.load();
+                    }
                 });
             }
         });
-</script>
-</body>
-</html>
-
