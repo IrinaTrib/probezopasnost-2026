@@ -2426,7 +2426,7 @@
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.classList.add('active');
+            const clickedNavItem = document.querySelector('[onclick*="' + sectionId + '"]'); if (clickedNavItem) clickedNavItem.classList.add('active');;
             
             // Close mobile sidebar
             if (window.innerWidth <= 768) {
