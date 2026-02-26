@@ -2488,7 +2488,7 @@
 
         async function loadYandexAudio(publicKey, audioEl) {
             try {
-                const apiUrl = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey);
+                const apiUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey));
                                 const resp = await fetch(apiUrl);
                 const data = await resp.json();
                 if (data.href) {
