@@ -2489,7 +2489,7 @@
                                 const resp = await fetch(apiUrl);
                 const data = await resp.json();
                 if (data.href) {
-                    audioEl.src = data.href;
+                    audioEl.src = 'https://corsproxy.io/?' + encodeURIComponent(data.href);
                     audioEl.load();
                 }
             } catch(e) {
