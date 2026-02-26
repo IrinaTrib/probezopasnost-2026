@@ -2488,10 +2488,8 @@
 
         async function loadYandexAudio(publicKey, audioEl) {
             try {
-                const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(
-                    'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey)
-                );
-                const resp = await fetch(proxyUrl);
+                const apiUrl = 'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key=' + encodeURIComponent(publicKey);
+                                const resp = await fetch(apiUrl);
                 const data = await resp.json();
                 if (data.href) {
                     audioEl.src = data.href;
