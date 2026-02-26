@@ -358,10 +358,12 @@
         <div class="nav-item" onclick="showSection('intro')">🎯 Введение</div>
         <div class="nav-item" onclick="showSection('dictionary')">📚 Словарь терминов</div>
         <div class="nav-item" onclick="showSection('market')">🔗 Как устроен рынок</div>
+                        <div class="nav-item" onclick="showSection('audio')">🎧 Аудиогид</div>
         
         <div class="nav-section">Часть I — Продукт</div>
         <div class="nav-item" onclick="showSection('block1')">Блок 1: Что такое ПРОбезопасность</div>
         <div class="nav-item" onclick="showSection('block2')">Блок 2: Масштаб 2026</div>
+                    
         <div class="nav-item" onclick="showSection('block3')">Блок 3: Аудитория (полная)</div>
         <div class="nav-item" onclick="showSection('block4')">Блок 4: Сегментация по цветам</div>
         <div class="nav-item" onclick="showSection('block5')">Блок 5: 5 отличий форума</div>
@@ -2371,6 +2373,45 @@
         🖨️ Печать
     </button>
 
+        <!-- Audio Section -->
+        <div id="audio" class="content-section" style="display: none;">
+            <div class="content-card">
+                <h2 class="section-title">🎧 Аудиогид по книге</h2>
+
+                <div class="tip-box">
+                    <h3 style="margin-top: 0; color: #166534;">Как пользоваться аудиогидом</h3>
+                    <p style="color: #166534; line-height: 1.8;">Нажмите Play, чтобы прослушать краткое введение к разделу книги. Используйте кнопки управления для паузы и перемотки.</p>
+                </div>
+
+                <div class="quick-ref">
+                    <h3 style="margin-top: 0; color: #92400e;">🎙 Введение</h3>
+                    <p style="line-height: 1.8;">Добро пожаловать в аудиогид по книге «ПРОбезопасность 2026». Здесь вы найдёте краткие аудиообзоры каждого раздела.</p>
+                    <audio controls style="width: 100%; margin-top: 12px;">
+                        <source src="audio/intro.mp3" type="audio/mpeg">
+                        Ваш браузер не поддерживает аудио.
+                    </audio>
+                </div>
+
+                <div class="quick-ref" style="margin-top: 16px;">
+                    <h3 style="margin-top: 0; color: #92400e;">🎙 Часть I — Продукт</h3>
+                    <p style="line-height: 1.8;">Обзор первых блоков книги: что такое ПРОбезопасность, масштаб рынка и аудитория.</p>
+                    <audio controls style="width: 100%; margin-top: 12px;">
+                        <source src="audio/part1.mp3" type="audio/mpeg">
+                        Ваш браузер не поддерживает аудио.
+                    </audio>
+                </div>
+
+                <div class="quick-ref" style="margin-top: 16px;">
+                    <h3 style="margin-top: 0; color: #92400e;">🎙 Часть II — Продажи</h3>
+                    <p style="line-height: 1.8;">Ключевые техники работы с клиентом, возражения и закрытие сделки.</p>
+                    <audio controls style="width: 100%; margin-top: 12px;">
+                        <source src="audio/part2.mp3" type="audio/mpeg">
+                        Ваш браузер не поддерживает аудио.
+                    </audio>
+                </div>
+
+            </div>
+        </div>
     <script>
         // Section navigation
         function showSection(sectionId) {
